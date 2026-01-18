@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3D Chess – P2P (WebRTC)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">♟️ 3D Chess P2P</div>
+    <div class="connection" id="connStatus">Idle</div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel" id="lobbyPanel">
+      <h2>Join / Host</h2>
+      <div class="row">
+        <label for="roomCode">Room code (4–8 digits)</label>
+        <input id="roomCode" type="text" inputmode="numeric" minlength="4" maxlength="8" placeholder="1234" />
+      </div>
+      <div class="row inline">
+        <button id="btnHost">Host</button>
+        <button id="btnJoin" class="secondary">Join</button>
+      </div>
+      <p class="muted small">One person clicks <b>Host</b>, the other clicks <b>Join</b> using the <b>same code</b>.</p>
+      <div id="lobbyInfo" class="status"></div>
+    </section>
+
+    <section class="panel" id="gamePanel" hidden>
+      <div class="hud">
+        <div class="players">
+          <div><span class="dot white"></span> <span id="whiteName">White (Host)</span></div>
+          <div><span class="dot black"></span> <span id="blackName">Black (Guest)</span></div>
+        </div>
+        <div class="turn">Turn: <strong id="turnLabel">–</strong></div>
+        <div class="room">Code <code id="roomLabel">——</code></div>
+      </div>
+
+      <div id="canvasWrap"></div>
+
+      <div class="controls">
+        <button id="btnFlip" class="secondary">Flip board</button>
+        <button id="btnNewGame" class="secondary">New game</button>
+        <button id="btnLeave" class="danger">Leave</button>
+      </div>
+
+      <div class="status" id="gameStatus"></div>
+    </section>
+  </main>
+
+  <!-- Libs -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+
+  <script src="threejs-chess.js"></script>
+  <script src="p2p.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
